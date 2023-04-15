@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "205228831276",
+    "project_id": "badget-5085a",
+    "storage_bucket": "badget-5085a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:205228831276:android:170ed7fd6e63b088671789",
+        "android_client_info": {
+          "package_name": "com.example.badget"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "205228831276-1dnbasihhkpt7og6vq6e1kqde2l7o8nl.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA-mBN4kyvArGmIB3z1H0m2yzzsKqvAu38"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "205228831276-1dnbasihhkpt7og6vq6e1kqde2l7o8nl.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
