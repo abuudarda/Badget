@@ -12,6 +12,9 @@
         android:theme="@style/Theme.Badget"
         tools:targetApi="31">
         <activity
+            android:name=".View.UI.ExpenseScreen"
+            android:exported="false" />
+        <activity
             android:name=".View.UI.MainActivity"
             android:exported="true">
             <intent-filter>
