@@ -61,19 +61,47 @@ public class ExpenseScreen extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater menuInflater=getMenuInflater();
-        menuInflater.inflate(R.menu.tick_menu,menu);
+        if (expenseModel == null) {
+            menuInflater.inflate(R.menu.tick_menu, menu);
+        } else {
+            menuInflater.inflate(R.menu.update_menu, menu);
+        }
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        int id=item.getItemId();
-        if(id==R.id.saveExpense){
-            createExpense();
+        int id = item.getItemId();
+
+        if (id == R.id.saveExpense) {
+            if (type != null) {
+                createExpense();
+                finish();
+            }
+            if (type == null) {
+                updateExpense();
+                finish();
+            }
             return true;
         }
-        return true;
+//        if (id == R.id.developer) {
+//            startActivity(new Intent(AddExpenseActivity.this, DeveloperActivity.class));
+//        }
+        if (id == R.id.deleteExpense) {
+            deleteExpense();
+        }
+
+        return false;
     }
+    private void deleteExpense() {
+        FirebaseFirestore
+                .getInstance()
+                .collection("expenses")
+                .document(expenseModel.getEId())
+                .delete();
+        finish();
+    }
+
     private void createExpense() {
 
         String expenseId = UUID.randomUUID().toString();

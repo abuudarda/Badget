@@ -15,6 +15,9 @@ import com.example.badget.R;
 import com.example.badget.ViewModel.MyAdapter;
 import com.example.badget.ViewModel.inter;
 import com.example.badget.databinding.ActivityMainBinding;
+import com.github.mikephil.charting.data.PieData;
+import com.github.mikephil.charting.data.PieDataSet;
+import com.github.mikephil.charting.data.PieEntry;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.AuthResult;
@@ -23,12 +26,14 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements inter {
     ActivityMainBinding binding;
     private MyAdapter expensesAdapter;
     Intent intent;
+    private long income = 0, expense = 0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -82,7 +87,6 @@ public class MainActivity extends AppCompatActivity implements inter {
                         @Override
                         public void onSuccess(AuthResult authResult) {
                             progressDialog.dismiss();
-
                         }
                     })
                     .addOnFailureListener(new OnFailureListener() {
@@ -99,8 +103,8 @@ public class MainActivity extends AppCompatActivity implements inter {
     @Override
     protected void onResume() {
         super.onResume();
-//        income = 0;
-//        expense = 0;
+        income = 0;
+        expense = 0;
         getData();
     }
 
@@ -120,18 +124,38 @@ public class MainActivity extends AppCompatActivity implements inter {
                         List<DocumentSnapshot> dsList = queryDocumentSnapshots.getDocuments();
                         for (DocumentSnapshot ds : dsList) {
                             Expense expenseModel = ds.toObject(Expense.class);
-//                            if (expenseModel.getType().equals("Income")) {
-//                                income += expenseModel.getAmount();
-//                            } else {
-//                                expense += expenseModel.getAmount();
-//                            }
+                            if (expenseModel.getType().equals("Income")) {
+                                income += expenseModel.getAmount();
+                            } else {
+                                expense += expenseModel.getAmount();
+                            }
                             expensesAdapter.add(expenseModel);
 
 
                         }
-//                        setUpGraph();
+                        setUpGraph();
                     }
                 });
+    }
+    private void setUpGraph() {
+        List<PieEntry> pieEntryList = new ArrayList<>();
+        List<Integer> colorsList = new ArrayList<>();
+        if (income != 0) {
+            pieEntryList.add(new PieEntry(income, "Income"));
+            colorsList.add(getResources().getColor(R.color.teal_700));
+        }
+
+        if (expense != 0) {
+            pieEntryList.add(new PieEntry(expense, "Expense"));
+            colorsList.add(getResources().getColor(R.color.purple_500));
+        }
+
+        PieDataSet pieDataSet = new PieDataSet(pieEntryList, String.valueOf(income - expense));
+        PieData pieData = new PieData(pieDataSet);
+        pieDataSet.setColors(colorsList);
+
+        binding.pieChart.setData(pieData);
+        binding.pieChart.invalidate();
     }
 
     @Override

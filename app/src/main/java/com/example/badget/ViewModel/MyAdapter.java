@@ -50,6 +50,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
 
         Expense expenseModel = expenseList.get(position);
+//        holder.date.setText();
         holder.note.setText("Note: " + expenseModel.getNote());
         holder.category.setText("Category: " + expenseModel.getCat());
         holder.amount.setText(String.valueOf(expenseModel.getAmount()));
@@ -68,7 +69,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
 
     @Override
     public int getItemCount() {
-        return 0;
+        return expenseList.size();
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder{
@@ -81,7 +82,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
             note = itemView.findViewById(R.id.note);
             category = itemView.findViewById(R.id.category);
             amount = itemView.findViewById(R.id.amount);
-            // date = itemView.findViewById(R.id.date);
+            date = itemView.findViewById(R.id.date);
             cardview = itemView.findViewById(R.id.cardview);
             type = itemView.findViewById(R.id.type);
 
