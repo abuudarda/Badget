@@ -22,12 +22,23 @@ import java.util.UUID;
 public class ExpenseScreen extends AppCompatActivity {
     ActivityExpenseScreenBinding binding;
     private String type;
+    private Expense expenseModel;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivityExpenseScreenBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
         type=getIntent().getStringExtra(("type"));
+
+        expenseModel=(Expense) getIntent().getSerializableExtra("model");
+
+        if(expenseModel!=null){
+            type=expenseModel.getType();
+            binding.ammount.setText(String.valueOf(expenseModel.getAmount()));
+            binding.category.setText(expenseModel.getCat());
+            binding.note.setText(expenseModel.getNote());
+        }
         if(type.equals("Income")){
             binding.incomeRadio.setChecked(true);
         }
@@ -84,7 +95,8 @@ public class ExpenseScreen extends AppCompatActivity {
             return;
         }
 
-        Expense expenseModel = new Expense(expenseId, note, category, type, Integer.parseInt(amount),(int) Calendar.getInstance().getTimeInMillis());
+        Expense expenseModel = new Expense(expenseId, note, category, type, Integer.parseInt(amount),
+                (int) Calendar.getInstance().getTimeInMillis(),FirebaseAuth.getInstance().getUid());
         FirebaseFirestore
                 .getInstance()
                 .collection("expenses")
@@ -93,5 +105,35 @@ public class ExpenseScreen extends AppCompatActivity {
         finish();
 
     }
+    private void updateExpense() {
 
+        String expenseId = expenseModel.getEId();
+        String amount = binding.ammount.getText().toString();
+        String note = binding.note.getText().toString();
+        String category = binding.category.getText().toString();
+
+        boolean incomeChecked = binding.incomeRadio.isChecked();
+        if (incomeChecked) {
+            type = "Income";
+        } else {
+            type = "Expense";
+        }
+
+        if (amount.trim().length() == 0) {
+            binding.ammount.setError("Empty Amount");
+            return;
+        }
+
+        Expense model = new Expense(expenseId, note, category, type, Integer.parseInt(amount),
+                expenseModel.getTime(), FirebaseAuth.getInstance().getUid());
+
+
+        FirebaseFirestore
+                .getInstance()
+                .collection("expenses")
+                .document(expenseId)
+                .set(model);
+        finish();
+
+    }
 }

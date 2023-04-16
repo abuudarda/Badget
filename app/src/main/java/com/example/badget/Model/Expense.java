@@ -1,7 +1,12 @@
 package com.example.badget.Model;
 
-public class Expense {
-    private String EId, note, cat, type;
+import java.io.Serializable;
+
+public class Expense implements Serializable {
+    public Expense() {
+    }
+
+    private String EId, note, cat, type, Uid;
     private int amount,time;
 
     public String getEId() {
@@ -36,6 +41,14 @@ public class Expense {
         this.type = type;
     }
 
+    public String getUid() {
+        return Uid;
+    }
+
+    public void setUid(String uid) {
+        Uid = uid;
+    }
+
     public int getAmount() {
         return amount;
     }
@@ -52,11 +65,12 @@ public class Expense {
         this.time = time;
     }
 
-    public Expense(String EId, String note, String cat, String type, int amount, int time) {
+    public Expense(String EId, String note, String cat, String type, int amount, int time, String uid  ) {
         this.EId = EId;
         this.note = note;
         this.cat = cat;
         this.type = type;
+        Uid = uid;
         this.amount = amount;
         this.time = time;
     }
