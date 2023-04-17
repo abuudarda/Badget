@@ -54,7 +54,8 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
         holder.note.setText("Note: " + expenseModel.getNote());
         holder.category.setText("Category: " + expenseModel.getCat());
         holder.amount.setText(String.valueOf(expenseModel.getAmount()));
-        holder.type.setText("Expense Type: " + expenseModel.getType());
+        holder.type.setText("Type: " + expenseModel.getType());
+
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -44,7 +44,7 @@ public class MainActivity extends AppCompatActivity implements inter {
 //        binding.recycler.setAdapter(expensesAdapter);
 //        binding.recycler.setLayoutManager(new LinearLayoutManager(this));
 
-        Intent intent = new Intent(MainActivity.this, ExpenseScreen.class);
+        intent = new Intent(MainActivity.this, ExpenseScreen.class);
 
         expensesAdapter = new MyAdapter(this, this);
         binding.recycler.setAdapter(expensesAdapter);

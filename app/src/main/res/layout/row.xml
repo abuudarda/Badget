@@ -6,7 +6,8 @@
     app:contentPadding="10dp"
     android:layout_margin="5dp"
     android:id="@+id/cardview"
-
+    app:cardBackgroundColor="@color/purple_cards"
+    app:cardCornerRadius="30dp"
     >
 
     <RelativeLayout
@@ -26,7 +27,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Note"
-                android:textColor="@color/black"
+                android:textColor="@color/white"
                 />
 
             <TextView
@@ -35,7 +36,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Category"
-                android:textColor="@color/black"
+                android:textColor="@color/white"
                 />
 
 
@@ -45,7 +46,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Expense Type"
-                android:textColor="@color/black"
+                android:textColor="@color/white"
                 />
 
             <TextView
@@ -54,7 +55,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Date"
-                android:textColor="@color/black"
+                android:textColor="@color/white"
                 />
         </LinearLayout>
 
@@ -72,7 +73,7 @@
                 android:layout_height="wrap_content"
                 android:text="0"
                 android:textSize="18sp"
-                android:textColor="@color/teal_700"
+                android:textColor="@color/teal_200"
                 />
 
             <TextView
@@ -80,7 +81,7 @@
                 android:layout_height="wrap_content"
                 android:text=" BDT"
                 android:textSize="19sp"
-                android:textColor="@color/teal_700"
+                android:textColor="@color/teal_200"
                 android:textStyle="bold"
                 />
 
