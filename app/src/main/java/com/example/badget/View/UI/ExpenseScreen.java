@@ -124,7 +124,7 @@ public class ExpenseScreen extends AppCompatActivity {
         }
 
         Expense expenseModel = new Expense(expenseId, note, category, type, Integer.parseInt(amount),
-                (int) Calendar.getInstance().getTimeInMillis(),FirebaseAuth.getInstance().getUid());
+                Calendar.getInstance().getTimeInMillis(),FirebaseAuth.getInstance().getUid());
         FirebaseFirestore
                 .getInstance()
                 .collection("expenses")

@@ -7,7 +7,8 @@ public class Expense implements Serializable {
     }
 
     private String EId, note, cat, type, Uid;
-    private int amount,time;
+    private int amount;
+    private long time;
 
     public String getEId() {
         return EId;
@@ -57,15 +58,15 @@ public class Expense implements Serializable {
         this.amount = amount;
     }
 
-    public int getTime() {
+    public long getTime() {
         return time;
     }
 
-    public void setTime(int time) {
+    public void setTime(long time) {
         this.time = time;
     }
 
-    public Expense(String EId, String note, String cat, String type, int amount, int time, String uid  ) {
+    public Expense(String EId, String note, String cat, String type, int amount, long time, String uid  ) {
         this.EId = EId;
         this.note = note;
         this.cat = cat;

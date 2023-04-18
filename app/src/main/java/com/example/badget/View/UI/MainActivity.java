@@ -2,10 +2,12 @@ package com.example.badget.View.UI;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
@@ -126,6 +128,7 @@ public class MainActivity extends AppCompatActivity implements inter {
                             Expense expenseModel = ds.toObject(Expense.class);
                             if (expenseModel.getType().equals("Income")) {
                                 income += expenseModel.getAmount();
+//                                binding
                             } else {
                                 expense += expenseModel.getAmount();
                             }
@@ -147,7 +150,7 @@ public class MainActivity extends AppCompatActivity implements inter {
 
         if (expense != 0) {
             pieEntryList.add(new PieEntry(expense, "Expense"));
-            colorsList.add(getResources().getColor(R.color.purple_500));
+            colorsList.add(getResources().getColor(R.color.red));
         }
 
         PieDataSet pieDataSet = new PieDataSet(pieEntryList, String.valueOf(income - expense));
@@ -156,6 +159,7 @@ public class MainActivity extends AppCompatActivity implements inter {
 
         binding.pieChart.setData(pieData);
         binding.pieChart.invalidate();
+        binding.pieChart.setBackgroundColor(ContextCompat.getColor(this, R.color.purple_cards));
     }
 
     @Override
