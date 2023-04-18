@@ -133,8 +133,6 @@ public class MainActivity extends AppCompatActivity implements inter {
                                 expense += expenseModel.getAmount();
                             }
                             expensesAdapter.add(expenseModel);
-
-
                         }
                         setUpGraph();
                     }
