@@ -68,16 +68,20 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
 
         holder.date.setText("Date :"+ dateString);
         holder.note.setText("Note: " + expenseModel.getNote());
-        holder.category.setText("Category: " + expenseModel.getCat());
+//        holder.category.setText("Category: " + expenseModel.getCat());
         holder.amount.setText(String.valueOf(expenseModel.getAmount()));
         holder.type.setText("Type: " + expenseModel.getType());
         if(expenseModel.getType().equals("Income")){
             holder.amount.setTextColor(ContextCompat.getColor(context,R.color.teal_200));
             holder.bdt.setTextColor(ContextCompat.getColor(context,R.color.teal_200));
+            holder.category.setText("Source: " + expenseModel.getCat());
+
         }
         else{
             holder.amount.setTextColor(ContextCompat.getColor(context,R.color.red));
             holder.bdt.setTextColor(ContextCompat.getColor(context,R.color.red));
+            holder.category.setText("Category: " + expenseModel.getCat());
+
         }
 
 
