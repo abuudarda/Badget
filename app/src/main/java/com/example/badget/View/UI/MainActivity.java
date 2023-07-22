@@ -89,6 +89,7 @@ public class MainActivity extends AppCompatActivity implements inter {
                         @Override
                         public void onSuccess(AuthResult authResult) {
                             progressDialog.dismiss();
+                            int x=0;
                         }
                     })
                     .addOnFailureListener(new OnFailureListener() {
